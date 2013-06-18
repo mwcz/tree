@@ -20,7 +20,7 @@
 
 extern bool dflag, lflag, pflag, sflag, Fflag, aflag, fflag, uflag, gflag;
 extern bool Dflag, inodeflag, devflag, Rflag;
-extern bool noindent, force_color, xdev, nolinks, flimit, nosort;
+extern bool noindent, use_color, xdev, nolinks, flimit, nosort;
 //extern char *title,
 extern char *host, *sp;
 
@@ -168,7 +168,7 @@ off_t html_listdir(char *d, int *dt, int *ft, u_long lev, dev_t dev)
       free(hcmd);
     } else {
       if (nolinks) {
-	if (force_color) {
+	if (use_color) {
 	  /*
 	   * Note that the B element has been set to normal weight in the
 	   * style portion of the output. so using <b> will just gives us a element
@@ -182,7 +182,7 @@ off_t html_listdir(char *d, int *dt, int *ft, u_long lev, dev_t dev)
 	} else
 	  fprintf(outfile,"%s",(*dir)->name);
       } else {
-	if (force_color) {
+	if (use_color) {
 	  sprintf(hclr, "%s",
 	    (*dir)->isdir ?  "DIR"  :
 	    (*dir)->isexe ?  "EXEC" :
@@ -334,7 +334,7 @@ void htmlr_listdir(struct _info **dir, char *d, int *dt, int *ft, u_long lev)
       free(hcmd);
     } else {
       if (nolinks) {
-	if (force_color) {
+	if (use_color) {
 	  /*
 	   * Note that the B element has been set to normal weight in the
 	   * style portion of the output. so using <b> will just gives us a element
@@ -348,7 +348,7 @@ void htmlr_listdir(struct _info **dir, char *d, int *dt, int *ft, u_long lev)
 	} else
 	  fprintf(outfile,"%s",(*dir)->name);
       } else {
-	if (force_color) {
+	if (use_color) {
 	  sprintf(hclr, "%s",
 		  (*dir)->isdir ?  "DIR"  :
 		  (*dir)->isexe ?  "EXEC" :

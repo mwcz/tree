@@ -20,7 +20,7 @@
 
 extern bool dflag, lflag, pflag, sflag, Fflag, aflag, fflag, uflag, gflag;
 extern bool Dflag, inodeflag, devflag, Rflag, cflag;
-extern bool noindent, force_color, xdev, nolinks, flimit, nosort;
+extern bool noindent, use_color, xdev, nolinks, flimit, nosort;
 
 extern const int ifmt[];
 extern const char fmt[], *ftype[];

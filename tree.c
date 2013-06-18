@@ -28,7 +28,7 @@ static char *hversion="\t\t tree v1.6.0 %s 1996 - 2011 by Steve Baker and Thomas
 bool dflag, lflag, pflag, sflag, Fflag, aflag, fflag, uflag, gflag;
 bool qflag, Nflag, Qflag, Dflag, inodeflag, devflag, hflag, Rflag;
 bool Hflag, siflag, cflag, Xflag, duflag, pruneflag;
-bool noindent, force_color, nocolor, xdev, noreport, nolinks, flimit, dirsfirst, nosort;
+bool noindent, use_color, xdev, noreport, nolinks, flimit, dirsfirst, nosort;
 char *pattern = NULL, *ipattern = NULL, *host = NULL, *title = "Directory Tree", *sp = " ";
 char *timefmt = NULL;
 const char *charset = NULL;
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
   q = p = dtotal = ftotal = 0;
   aflag = dflag = fflag = lflag = pflag = sflag = Fflag = uflag = gflag = FALSE;
   Dflag = qflag = Nflag = Qflag = Rflag = hflag = Hflag = siflag = cflag = FALSE;
-  noindent = force_color = nocolor = xdev = noreport = nolinks = FALSE;
+  noindent = use_color = xdev = noreport = nolinks = FALSE;
   dirsfirst = nosort = inodeflag = devflag = Xflag = FALSE;
   duflag = pruneflag = FALSE;
   flimit = 0;
@@ -156,10 +156,10 @@ int main(int argc, char **argv)
 	  noindent = TRUE;
 	  break;
 	case 'C':
-	  force_color = TRUE;
+	  use_color = TRUE;
 	  break;
 	case 'n':
-	  nocolor = TRUE;
+	  use_color = FALSE;
 	  break;
 	case 'x':
 	  xdev = TRUE;
@@ -409,10 +409,10 @@ int main(int argc, char **argv)
 
     fflag = FALSE;
     if (nolinks) {
-      if (force_color) fprintf(outfile, "<b class=\"NORM\">%s</b>",host);
+      if (use_color) fprintf(outfile, "<b class=\"NORM\">%s</b>",host);
       else fprintf(outfile,"%s",host);
     } else {
-      if (force_color) fprintf(outfile,"<a class=\"NORM\" href=\"%s\">%s</a>",host,host);
+      if (use_color) fprintf(outfile,"<a class=\"NORM\" href=\"%s\">%s</a>",host,host);
       else fprintf(outfile,"<a href=\"%s\">%s</a>",host,host);
     }
     curdir = gnu_getcwd();

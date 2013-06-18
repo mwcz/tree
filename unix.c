@@ -20,7 +20,7 @@
 
 extern bool dflag, lflag, pflag, sflag, Fflag, aflag, fflag, uflag, gflag;
 extern bool Dflag, inodeflag, devflag, Rflag, duflag, pruneflag;
-extern bool noindent, force_color, xdev, nolinks, flimit, nosort;
+extern bool noindent, use_color, xdev, nolinks, flimit, nosort;
 
 extern void (*listdir)(char *, int *, int *, u_long, dev_t);
 extern int (*cmpfunc)();
