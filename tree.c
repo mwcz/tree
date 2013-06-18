@@ -273,6 +273,12 @@ int main(int argc, char **argv)
 	      nolinks = TRUE;
 	      break;
 	    }
+	    if (!strcmp("--noansi",argv[i])) {
+	      j = strlen(argv[i])-1;
+          use_color = FALSE;
+          ansilines = FALSE;
+	      break;
+	    }
 	    if (!strcmp("--dirsfirst",argv[i])) {
 	      j = strlen(argv[i])-1;
 	      dirsfirst = TRUE;
@@ -296,7 +302,7 @@ int main(int argc, char **argv)
 	      }
 	      break;
 	    }
-	    if (!strncmp("--charset",argv[i],9)){
+	    if (!strcmp("--charset",argv[i])){
 	      j = 9;
 	      if (*(argv[i]+j) == '=') {
 		if (*(charset = (argv[i]+10))) {
@@ -516,7 +522,7 @@ void usage(int n)
   fprintf(stderr,
 	"usage: tree [-acdfghilnpqrstuvxACDFQNSUX] [-H baseHREF] [-T title ] [-L level [-R]]\n"
 	"\t[-P pattern] [-I pattern] [-o filename] [--version] [--help] [--inodes]\n"
-	"\t[--device] [--noreport] [--nolinks] [--dirsfirst] [--charset charset]\n"
+	"\t[--device] [--noreport] [--nolinks] [--dirsfirst] [--charset charset] [--noansi]\n"
 	"\t[--filelimit[=]#] [--si] [--timefmt[=]<f>] [<directory list>]\n");
   if (n < 2) exit(0);
   fprintf(stderr,
@@ -562,6 +568,7 @@ void usage(int n)
 	"  -S            Print with ASCII graphics indentation lines.\n"
 	"  -n            Turn colorization off, overrides -C (last one wins).\n"
 	"  -C            Turn colorization on, overrides -n (last one wins).\n"
+    "  --noansi      Disable ANSI colorization and indentation lines.\n"
 	"  ------- XML/HTML options -------\n"
 	"  -X            Prints out an XML representation of the tree.\n"
 	"  -H baseHREF   Prints out HTML format with baseHREF as top directory.\n"
